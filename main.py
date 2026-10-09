@@ -756,6 +756,17 @@ def render_extracted_text_preview(chunks: list[Document]) -> None:
 
 def main() -> None:
     st.set_page_config(page_title=APP_TITLE, page_icon="RAG", layout="wide")
+    
+    # Inject Vercel Speed Insights for performance monitoring
+    # This script injects the Speed Insights tracking when deployed on Vercel
+    speed_insights_script = """
+        <script>
+            window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+        </script>
+        <script defer src="/_vercel/speed-insights/script.js"></script>
+    """
+    st.components.v1.html(speed_insights_script, height=0)
+    
     st.title(APP_TITLE)
 
     with st.sidebar:
